@@ -1,22 +1,32 @@
-/**
- * ファイル管理設定
- */
 const CONFIG = {
-    // 単色用画像 (pic/monochromatic/ 内)
     monoImageFile: "base.png",
-
-    // SP用画像 (pic/Aura/ 内)
     spAuraFile: "aura.png",
-
-    // 柄あり用画像リスト (pic/pattern/ 内)
     patterns: [
-        { name: "ツートン", file: "00.png" },
-        { name: "ストライプ", file: "pattern_stripe.png" },
-        { name: "迷彩", file: "pattern_camo.png" },
-        { name: "メッシュ", file: "pattern_mesh.png" }
+        { name: "ツートン", file: "01.png" },
+        { name: "ボーダー", file: "02.png" },
+        { name: "ストライプ", file: "03.png" },
+        { name: "水玉", file: "04.png" },
+        { name: "アニマル", file: "05.png" },
+        { name: "斜めボーダー", file: "06.png" },
+        { name: "ピンドット", file: "07.png" },
+        { name: "ギンガムチェック", file: "08.png" },
+        { name: "ダイヤ", file: "09.png" },
+        { name: "レンガ", file: "10.png" },
+        { name: "スプラッシュ", file: "11.png" },
+        { name: "マーブル", file: "12.png" },
+        { name: "鱗文", file: "13.png" },
+        { name: "蛇", file: "14.png" },
+        { name: "シェブロン", file: "15.png" },
+        { name: "トラ", file: "16.png" },
+        { name: "しずく", file: "17.png" },
+        { name: "うろこ", file: "18.png" },
+        { name: "バブルドット", file: "19.png" },
+        { name: "花", file: "20.png" },
+        { name: "スペード", file: "21.png" },
+        { name: "星", file: "22.png" },
+        { name: "地層", file: "23.png" },
     ],
 
-    // 対応カラーコード
     colors: [
         {code: "262626", name: "黒"}, {code: "191919", name: "黒濃"}, {code: "3c3c3c", name: "黒薄"},
         {code: "e6130b", name: "赤"}, {code: "b50d0d", name: "赤濃"}, {code: "f43246", name: "赤薄"},
@@ -44,8 +54,8 @@ function init() {
     const c1Sel = document.getElementById('color1Select');
     const c2Sel = document.getElementById('color2Select');
     CONFIG.colors.forEach(c => {
-        c1Sel.add(new Option(`${c.name} (#${c.code})`, c.code));
-        c2Sel.add(new Option(`${c.name} (#${c.code})`, c.code));
+        c1Sel.add(new Option(`${c.name}`, c.code));
+        c2Sel.add(new Option(`${c.name}`, c.code));
     });
 
     c1Sel.value = "e6130b"; 
@@ -94,9 +104,8 @@ function switchMode(mode) {
 }
 
 async function render() {
-    // カラー設定の取得
+
     const color1 = hexToRgb(document.getElementById('color1Select').value);
-    // 単色モードなら、黒い部分は「黒(0,0,0)」として扱う
     const color2 = (currentMode === 'mono') ? {r:0, g:0, b:0} : hexToRgb(document.getElementById('color2Select').value);
     
     const path = (currentMode === 'mono') 
@@ -116,21 +125,14 @@ async function render() {
         for (let i = 0; i < data.length; i += 4) {
             if (data[i + 3] === 0) continue; 
 
-            // シンプルな輝度（0〜1）の計算
             const brightness = (data[i] + data[i+1] + data[i+2]) / 3 / 255;
 
-            /**
-             * 当初の想定ロジック:
-             * 白(brightness=1) のときは色1
-             * 黒(brightness=0) のときは色2 (単色なら黒)
-             */
             data[i]     = color2.r + (color1.r - color2.r) * brightness;
             data[i + 1] = color2.g + (color1.g - color2.g) * brightness;
             data[i + 2] = color2.b + (color1.b - color2.b) * brightness;
         }
         ctx.putImageData(imageData, 0, 0);
 
-        // 単色モード時のSP Aura
         if (currentMode === 'mono' && document.getElementById('spEnable').checked) {
             const auraImg = await loadImage(`pic/Aura/${CONFIG.spAuraFile}`);
             ctx.drawImage(auraImg, 0, 0, canvas.width, canvas.height);

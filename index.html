@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Colorizer Pro</title>
+    <title>色シミュレーション</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="sidebar">
-    <h1>IMAGE COLORIZER</h1>
+    <h1>浜田ﾁｬﾝ</h1>
 
     <!-- 1. モード切り替え -->
     <div class="section">
@@ -20,18 +20,16 @@
         </div>
     </div>
 
-    <!-- 2. 単色モード専用：SP設定 (Patternモード時はJSで隠す) -->
     <div id="monoOnlySettings">
         <div class="section">
-            <label>SP化オプション</label>
+            <label>SP化</label>
             <div class="checkbox-group">
-                <input type="checkbox" id="spEnable"> <span>SPエフェクトを付与</span>
+                <input type="checkbox" id="spEnable"> <span>有/無</span>
             </div>
             <select id="spImageSelect" class="hidden"></select>
         </div>
     </div>
 
-    <!-- 3. 柄ありモード専用：柄選択 (Monoモード時はJSで隠す) -->
     <div id="patternOnlySettings" class="hidden">
         <div class="section">
             <label>柄の選択</label>
@@ -39,13 +37,11 @@
         </div>
     </div>
 
-    <!-- 4. カラー設定 -->
     <div class="section">
         <label id="c1Label">着色カラー</label>
         <select id="color1Select" class="color-select"></select>
     </div>
 
-    <!-- Patternモード時のみ表示される色2 -->
     <div id="color2Group" class="section hidden">
         <div class="label-with-btn">
             <label>色2 (黒部分)</label>
