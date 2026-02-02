@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Colorizer Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>IMAGE COLORIZER</h1>
+
+    <!-- 1. モード切り替え -->
+    <div class="section">
+        <label>表示モード</label>
+        <div class="mode-switch" id="modeSwitch">
+            <button id="modeMono" class="active">単色（柄なし）</button>
+            <button id="modePattern">柄あり</button>
+        </div>
+    </div>
+
+    <!-- 2. 単色モード専用：SP設定 (Patternモード時はJSで隠す) -->
+    <div id="monoOnlySettings">
+        <div class="section">
+            <label>SP化オプション</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="spEnable"> <span>SPエフェクトを付与</span>
+            </div>
+            <select id="spImageSelect" class="hidden"></select>
+        </div>
+    </div>
+
+    <!-- 3. 柄ありモード専用：柄選択 (Monoモード時はJSで隠す) -->
+    <div id="patternOnlySettings" class="hidden">
+        <div class="section">
+            <label>柄の選択</label>
+            <select id="patternImageSelect"></select>
+        </div>
+    </div>
+
+    <!-- 4. カラー設定 -->
+    <div class="section">
+        <label id="c1Label">着色カラー</label>
+        <select id="color1Select" class="color-select"></select>
+    </div>
+
+    <!-- Patternモード時のみ表示される色2 -->
+    <div id="color2Group" class="section hidden">
+        <div class="label-with-btn">
+            <label>色2 (黒部分)</label>
+            <button class="swap-btn" id="swapBtn" title="色を入れ替える">⇄</button>
+        </div>
+        <select id="color2Select" class="color-select"></select>
+    </div>
+
+    <div class="section">
+        <button class="btn-primary" id="downloadBtn">画像を保存する</button>
+    </div>
+</div>
+
+<div class="main-view">
+    <div class="canvas-wrapper">
+        <canvas id="mainCanvas"></canvas>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
