@@ -99,7 +99,7 @@ function switchMode(mode) {
     document.getElementById('monoOnlySettings').classList.toggle('hidden', mode !== 'mono');
     document.getElementById('patternOnlySettings').classList.toggle('hidden', mode !== 'pattern');
     document.getElementById('color2Group').classList.toggle('hidden', mode !== 'pattern');
-    document.getElementById('c1Label').innerText = (mode === 'mono') ? "着色カラー" : "色1 (白部分)";
+    document.getElementById('c1Label').innerText = (mode === 'mono') ? "着色カラー" : "色1";
     render();
 }
 
