@@ -82,18 +82,26 @@ select { width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444
 
 @media (max-width: 768px) {
     body {
-        flex-direction: column; 
+        flex-direction: column;
     }
 
     .sidebar {
         width: 100%;
-        height: 70%;
+        height: 75%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
+        order: 1; 
     }
 
     .main-view {
         width: 100%;
-        height: 30%;
+        height: 25%; 
+        flex: none;
+        order: 2; 
+        background-size: 10px 10px;
+    }
+
+    .canvas-wrapper {
+        padding: 10px; 
     }
 }
