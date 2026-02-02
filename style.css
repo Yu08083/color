@@ -12,51 +12,59 @@ body {
     color: var(--text-color);
     margin: 0;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     height: 100vh;
-    overflow: hidden; 
+    width: 100vw;
+    overflow: hidden;
 }
+
 
 .sidebar {
     width: 320px;
+    height: 100%;
     background-color: var(--panel-color);
     padding: 24px;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: auto; 
+    overflow-y: auto;
     box-sizing: border-box;
+    flex-shrink: 0; 
 }
 
 .main-view {
-    flex: 1;
+    flex-grow: 1; 
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #111;
     background-image: 
         linear-gradient(45deg, #1a1a1a 25%, transparent 25%), 
         linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
         linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
         linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
     background-size: 20px 20px;
+    position: relative;
     overflow: hidden;
 }
 
 .canvas-wrapper {
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    max-width: 90%;
-    max-height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 canvas {
-    display: block;
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; 
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
 }
 
 h1 { font-size: 1.1rem; letter-spacing: 2px; margin: 0; color: var(--accent-color); }
@@ -79,19 +87,13 @@ select { width: 100%; padding: 10px; background: #2a2a2a; border: 1px solid #444
 
     .sidebar {
         width: 100%;
-        height: 45%; 
+        height: 40%;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
     }
 
     .main-view {
         width: 100%;
-        height: 55%;
-        flex: none;
-    }
-
-    .canvas-wrapper {
-        max-width: 95%;
-        max-height: 95%;
+        height: 60%;
     }
 }
