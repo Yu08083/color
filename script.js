@@ -116,8 +116,10 @@ async function render() {
         const img = await loadImage(path);
         canvas.width = img.width;
         canvas.height = img.height;
+        
+        canvas.style.width = ""; 
+        canvas.style.height = "";
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
